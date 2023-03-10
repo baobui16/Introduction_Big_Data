@@ -12,8 +12,8 @@
 
 
 ## Collaborators (your-team-name)
-- `2012049` **Nguyễn Đức Minh** ([@githubaccount1](https://github.com/githubaccount1))
-- `20127092` **Nguyễn Minh Tuấn** ([@githubaccount2](https://github.com/githubaccount2))
+- `20127049` **Nguyễn Đức Minh** ([@githubaccount1](https://github.com/NguyenDucMinhDS1?fbclid=IwAR2N83xTUoFC1SekJMfc1zlTzila3q1ZPZiqzFrgoxM4fM5g0kPfyx2jXGs))
+- `20127092` **Nguyễn Minh Tuấn** ([@githubaccount2](https://github.com/20127092-KTLT-NguyenMinhTuan?fbclid=IwAR2PZ0mdz_zX1gt21Dah7EwfM8bInu4sA1MwBAZYQLxjKZZTKqgpOjaugsQ))
 - `20127444 ` **Bùi Duy Bảo** ([@githubaccount3](https://github.com/baobui16))
 - `20127448` **Nguyễn Thái Bảo** ([@githubaccount4](https://github.com/baobao1911))
 ## Instructors
