@@ -17,7 +17,7 @@ public class Unhealthy_relationship {
 
   public static class TokenizerMapper extends Mapper<Object, Text, Text, IntWritable>{
 
-    private final static  IntWritable firstValue = new IntWritable(100);
+    private final static  IntWritable firstValue = new IntWritable(1);
     private final static  IntWritable secondValue = new IntWritable(-1);
     
     private Text word = new Text();
@@ -50,7 +50,7 @@ public class Unhealthy_relationship {
         sum += val.get();
       }
       String temp ;
-      if (sum % 10 == 0){temp = "pos";}
+      if (sum > 0){temp = "pos";}
       else if(sum < 0){temp = "neg";}
       else {temp = "eq";}
       context.write(key, new Text(temp));
