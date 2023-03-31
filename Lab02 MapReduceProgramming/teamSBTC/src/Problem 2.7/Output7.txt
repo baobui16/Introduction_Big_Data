@@ -1,0 +1,6 @@
+11116,bbb6,buO1jxC7FAP9GaLzwTjdmA==,0R3BGGv5geCA7tcZ8qrgDw==,PaNHJZoYVjqkPLI8L4JuiA==,u2iataM6TdYL22AFOJrC9w==,bsM6IT1i9avtnHmcvWK0UQ==,Malaria,XH26FbXjoO+bWtTIEn1Bcg==
+11115,bbb5,C516Lk2XDFXcciML1oXeSQ==,0R3BGGv5geCA7tcZ8qrgDw==,90zBX0GOU5IzeYDAHLtbGQ==,u2iataM6TdYL22AFOJrC9w==,2g3mKCZL3cP0MBqaXD5cZQ==,Blood Pressure,GOVFj0iNhm9VUPvATg+wbw==
+11114,bbb4,LlhfxWybuvBKynxMhmhX6A==,0R3BGGv5geCA7tcZ8qrgDw==,/zSLirFR5HBucWAKyw88cA==,u2iataM6TdYL22AFOJrC9w==,bsM6IT1i9avtnHmcvWK0UQ==,Cold,ppr7dU74LkyRdYE+2cBQFg==
+11113,bbb3,BO4M0r06+nrLytWAxTv7MA==,0R3BGGv5geCA7tcZ8qrgDw==,fMDg+phn8G5IHgpWcjgcVQ==,u2iataM6TdYL22AFOJrC9w==,2g3mKCZL3cP0MBqaXD5cZQ==,Fever,DtoXbPZPu+uM7/utmoVJmw==
+11112,bbb2,ESE09NsjybbgzJP4oUK7+Q==,0R3BGGv5geCA7tcZ8qrgDw==,Se8fr+0IrzhOj52w/a/1bQ==,u2iataM6TdYL22AFOJrC9w==,bsM6IT1i9avtnHmcvWK0UQ==,PCOS,6hLjP5Keos1vFFJ+sJZCmw==
+11111,bbb1,/u1STvYwDT1NXOWSw+wy5A==,0R3BGGv5geCA7tcZ8qrgDw==,E4NpaFIAlrmrwb87vWEXqQ==,u2iataM6TdYL22AFOJrC9w==,2g3mKCZL3cP0MBqaXD5cZQ==,Diabetes,VMSSx+fNB/+WAuCzo/4Gew==
