@@ -3,7 +3,6 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 import java.util.StringTokenizer;
-//import java.util.logging.Logger;
 import java.util.Base64;
 
 import javax.crypto.Cipher;
@@ -26,10 +25,10 @@ import org.apache.log4j.Logger;
 
 
 public class DeIdentify {
-       
-       //static  Logger  = Logger.getLogger(DeIdentify.class.getName());
+	//Specify the parameters required to encrypt the data table's columns
        public static Integer[] encryptCol={2,3,4,5,6,8};
        private static byte[] key1 = new String("samplekey1234567").getBytes();
+	   // Initialize the Logger object to start logging data.
        private static final Logger logger = Logger.getLogger(DeIdentify.class);
 
        
@@ -38,44 +37,50 @@ public class DeIdentify {
 
     public void map(Object key, Text value, Context context
                     ) throws IOException, InterruptedException {
-                    
+                    // convert the input line to string and cut to array by using comma
                     String[] parts = value.toString().split(",");
-                    StringBuilder sb = new StringBuilder();
+					// create variable with type StringBuilder for edit string
+                    StringBuilder temp = new StringBuilder();
+					// travel each element in array part 
                     for (int i = 0; i < parts.length; i++) {
-                    if (Arrays.asList(encryptCol).contains(i)) {
-                    sb.append(encrypt(parts[i], key1));
-                    } else {
-                    sb.append(parts[i]);
+						//check element need to encode
+                    	if (Arrays.asList(encryptCol).contains(i)) {
+							// add the value after encode into sb variable
+							temp.append(encrypt(parts[i], key1));
+                    	} // if index of element not need to encode , just add in to temp string 
+						else {
+							temp.append(parts[i]);
+                    	}
+						// add the comma for each element
+                    	if (i < parts.length - 1) {
+							temp.append(",");
+                    	}
                     }
-                    if (i < parts.length - 1) {
-                    sb.append(",");
-                    }
-                    } context.write(NullWritable.get(), new Text(sb.toString()));
+					// write into hadoop with key type NullWritable and value is the line after encode 
+					context.write(NullWritable.get(), new Text(temp.toString()));
                           
       
     }
   }
+  // get function encrypt in file introduce
   public static String encrypt(String strToEncrypt, byte[] key){
 	try{
-	Cipher cipher = Cipher.getInstance("AES/ECB/PKCS5Padding");
-	SecretKeySpec secretKey = new SecretKeySpec(key, "AES");
-	cipher.init(Cipher.ENCRYPT_MODE, secretKey);
-	//cipher.init(Cipher.DECRYPT_MODE, secretKey);
-	String encryptedString = Base64.getEncoder().encodeToString(cipher.doFinal(strToEncrypt.getBytes()));
-	//String decrypted = new String(cipher.doFinal(Base64.decodeBase64(strToEncrypt)));
-	return encryptedString.trim();
-	//return decrypted;
+		Cipher cipher = Cipher.getInstance("AES/ECB/PKCS5Padding");
+		SecretKeySpec secretKey = new SecretKeySpec(key, "AES");
+		cipher.init(Cipher.ENCRYPT_MODE, secretKey);
+		String encryptedString = Base64.getEncoder().encodeToString(cipher.doFinal(strToEncrypt.getBytes()));
+		return encryptedString.trim();
 	}
 	catch (Exception e){
-	logger.error("Error while encrypting", e);
+		logger.error("Error while encrypting", e);
 	}
 	return null;
 	}
   public static void main(String[] args) throws Exception { 
  
-    	//reads the default configuration of cluster from the configuration xml files
+    //reads the default configuration of cluster from the configuration xml files
 	Configuration conf = new Configuration();
-    	Job job = Job.getInstance(conf, "DeIdentify");
+    Job job = Job.getInstance(conf, "DeIdentify");
 	
 	//Assigning the driver class name
 	job.setJarByClass(DeIdentify.class);
@@ -100,19 +105,17 @@ public class DeIdentify {
 	//Defining output Format class which is responsible to parse the final key-value output from MR framework to a text file into the hard disk
 	job.setOutputFormatClass(TextOutputFormat.class);
 	 
-	 //setting the second argument as a path in a path variable
-    	Path outputPath = new Path(args[1]);
+	//setting the second argument as a path in a path variable
+    Path outputPath = new Path(args[1]);
 			
-	 //Configuring the input/output path from the filesystem into the job
+	//Configuring the input/output path from the filesystem into the job
 	FileInputFormat.addInputPath(job, new Path(args[0]));
 	FileOutputFormat.setOutputPath(job, new Path(args[1]));
 			
-	 //deleting the output path automatically from hdfs so that we don't have delete it explicitly
+	//deleting the output path automatically from hdfs so that we don't have delete it explicitly
 	outputPath.getFileSystem(conf).delete(outputPath);
-	  //exiting the job only if the flag value becomes false
+	//exiting the job only if the flag value becomes false
 	System.exit(job.waitForCompletion(true) ? 0 : 1);
-       }
-
-
+    }
 }
 
