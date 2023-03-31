@@ -19,8 +19,7 @@ public class MaxTemp {
        extends Mapper<Object, Text, Text, Text>{
 		//set the delimiter to cut string
        final String DELIMITER = " ";
-    public void map(Object key, Text value, Context context
-                    ) throws IOException, InterruptedException {
+    public void map(Object key, Text value, Context context) throws IOException, InterruptedException {
 					// read line in file input
 					String line = value.toString();  
 					// cut string using .split with delimiter have been seted and save in array string
@@ -37,9 +36,7 @@ public class MaxTemp {
   public static class Reduce
        extends Reducer<Text, Text, Text, Text> {
 
-    public void reduce(Text key, Iterable<Text> values,
-                       Context context
-                       ) throws IOException, InterruptedException {
+    public void reduce(Text key, Iterable<Text> values,Context context) throws IOException, InterruptedException {
 						// create variable for save the max of temperature for each key
                        float max_Temp = 0;
 					   // traverse each value in key

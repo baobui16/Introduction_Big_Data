@@ -35,8 +35,7 @@ public class DeIdentify {
   public static class Map
        extends Mapper<Object, Text, NullWritable, Text>{
 
-    public void map(Object key, Text value, Context context
-                    ) throws IOException, InterruptedException {
+    public void map(Object key, Text value, Context context) throws IOException, InterruptedException {
                     // convert the input line to string and cut to array by using comma
                     String[] parts = value.toString().split(",");
 					// create variable with type StringBuilder for edit string
