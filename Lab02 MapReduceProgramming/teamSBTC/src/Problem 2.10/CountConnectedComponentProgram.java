@@ -16,14 +16,24 @@ public class CountConnectedComponentProgram {
 
         public void map(LongWritable key, Text value, Context context
         ) throws IOException, InterruptedException {
+            // Extract the list of string token
             String[] tokens = value.toString().split(" ");
+
+            // Set node ID by first token
             int node = Integer.parseInt(tokens[0]);
+
+            // Create list storing neighbor of node
             int[] neighbors = new int[tokens.length - 1];
+
+            // Set other tokens as neighbor id
             for (int i = 1; i < tokens.length; i++) {
                 neighbors[i - 1] = Integer.parseInt(tokens[i]);
             }
-            Arrays.sort(neighbors);
 
+            // Ascending Sort
+            Arrays.sort(neighbors);
+            
+            // Set key-value for each two of neighbor node
             for (int i = 0; i < neighbors.length; i++) {
                 for (int j = i + 1; j < neighbors.length; j++) {
                     context.write(new IntWritable(neighbors[i]), new IntWritable(neighbors[j]));
@@ -42,11 +52,16 @@ public class CountConnectedComponentProgram {
                            Context context
         ) throws IOException, InterruptedException {
             int node = key.get();
+
+            // Set for storing neighbor node
             HashSet<Integer> neighbors = new HashSet<Integer>();
+
+            // For loop to go through input vals and add to set of neighbor
             for (IntWritable value : values) {
                 neighbors.add(value.get());
             }
 
+            // Set to store connected components
             HashSet<Integer> component = new HashSet<Integer>();
             component.add(node);
 
@@ -54,13 +69,17 @@ public class CountConnectedComponentProgram {
             do {
                 added = false;
                 HashSet<Integer> newComponent = new HashSet<Integer>();
+                // Go through node neighbors in current connected component
                 for (int neighbor : neighbors) {
+                    // Pass if neighbor already connected
                     if (component.contains(neighbor)) {
                         continue;
                     }
+                    // If neighbor not in connected component, add it to set new node then add to component
                     added = true;
                     newComponent.add(neighbor);
                 }
+                // Add new nodes to connected component
                 component.addAll(newComponent);
             } while (added);
 

@@ -21,8 +21,11 @@ public class AverageSalary {
 
         public void map(Object key, Text value, Context context) throws IOException, InterruptedException {
             String[] values = value.toString().split("\t");
-            id.set(values[0]);
 
+            // Set ID as key
+            id.set(values[0]);
+            
+            // Set salary as value
             salary.set(Float.parseFloat(values[2]));
             context.write(id, salary);
         }
@@ -37,11 +40,14 @@ public class AverageSalary {
                            Context context) throws IOException, InterruptedException {
             float totalSalary = 0;
             int numberPersons = 0;
+
+            // For loop each key to count up the salary also number of persons
             for (FloatWritable salary : values) {
                 totalSalary += salary.get();
                 numberPersons++;
             }
-
+            
+            // Set the average salary a FloatWritable
             result.set(totalSalary/numberPersons);
             context.write(key, result);
         }

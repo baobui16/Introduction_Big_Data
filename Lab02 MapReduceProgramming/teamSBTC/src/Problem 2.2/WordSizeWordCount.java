@@ -24,7 +24,9 @@ public class WordSizeWordCount {
             StringTokenizer tokenizer = new StringTokenizer(value.toString());
 
             while (tokenizer.hasMoreTokens()) {
+                // Convert word to lowercase and delete non-alphanumeric characters
                 String word = tokenizer.nextToken().toLowerCase().replaceAll("[^a-zA-Z0-9]", "");
+                // Set wordsize to the length of a word
                 wordSize.set(word.length());
                 context.write(wordSize, one);
             }
@@ -35,8 +37,8 @@ public class WordSizeWordCount {
 
         public void reduce(IntWritable key, Iterable<IntWritable> values, Context context)
                 throws IOException, InterruptedException {
-
             int sum = 0;
+            // Counter for each key
             for (IntWritable val : values) {
                 sum += val.get();
             }

@@ -14,7 +14,10 @@ public class MusicTrack {
     public static class MusicMapper extends Mapper<LongWritable, Text, Text, IntWritable> {
 
         public void map(LongWritable key, Text value, Context context) throws IOException, InterruptedException {
+            // Extract the line by "|"
             String[] fields = value.toString().split("\\|");
+
+            // Extract fields of string
             String userId = fields[0];
             String trackId = fields[1];
             int shared = Integer.parseInt(fields[2]);
@@ -39,6 +42,7 @@ public class MusicTrack {
         public void reduce(Text key, Iterable<IntWritable> values, Context context)
                 throws IOException, InterruptedException {
             int sum = 0;
+            // Counter for each key
             for (IntWritable value : values) {
                 sum += value.get();
             }

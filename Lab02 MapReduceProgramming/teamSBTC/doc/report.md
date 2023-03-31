@@ -22,11 +22,36 @@ code-block-font-size: \scriptsize
 
 
 ## Explain the code in detail.
+
 ### Problem 2.1: Wordcount Program
+
+![](images/2.1.1_Explain.png)
+
+![](images/2.1.2_Explain.png)
+
 Explain:
+
+The WordCount program is a Java-based implementation of the Hadoop MapReduce framework. It consists of two classes: a Mapper and a Reducer. 
+
+The Mapper class takes input data in the form of key-value pairs, where the key is a LongWritable and the value is a Text, and outputs key-value pairs where the key is a word and the value is a constant 1. 
+
+The Reducer class takes the output of the Mapper as input, counts the number of occurrences of each word, and emits a final count as a key-value pair where the key is the word and the value is the count. The program is commonly used in natural language processing and text analytics.
+
 ### Problem 2.2: WordSizeWordCount Program
+
+![](images/2.2.1_Explain.png)
+
+![](images/2.2.2_Explain.png)
+
 Explain:
+The WordSizeWordCount program counts the number of words in an input text file based on their length. 
+
+The Mapper class takes in key-value pairs where the key is a LongWritable and the value is a Text, converts each word to lowercase, removes any non-alphanumeric characters, and sets the word length as the key in the output key-value pair, with the value always being 1. 
+
+The Reducer class takes in a key-value pair where the key is the word length and the value is a list of 1s, sums up the values to count the total number of words with the given length, and outputs the count as a key-value pair where the key is the word length and the value is the count. The program provides insights into the distribution of word lengths in a text corpus.
+
 ### Problem 2.3: WeatherData Program
+
 ![](images/2.3.1_Explain.png)
 
 ![](images/2.3.2_Explain.png)
@@ -34,44 +59,92 @@ Explain:
 
 Explain:
 
-This code implements a Hadoop MapReduce job to process weather data and identify days with hot and cold temperatures. The input data contains multiple lines, each representing a single day's weather information. The mapper extracts the year, month, and day from each line, as well as the maximum and minimum temperatures. It then checks if the maximum temperature is greater than 40 or the minimum temperature is less than 10, and outputs a key-value pair with the date as the key and either "Hot Day" or "Cold Day" as the value, depending on which condition is satisfied.
+This is a Java program that processes weather data in a text format that extends Mapper and Reducer classes respectively. 
 
-The reducer simply collects all the key-value pairs with the same date and outputs them unchanged.
+The Map class extracts the year, month, day, maximum temperature, and minimum temperature from each line of input, and checks if the maximum temperature is greater than 40 and the minimum temperature is less than 10. If either of these conditions is true, the class writes the date and the corresponding weather condition ("Hot Day" or "Cold Day") to the context. 
+
+The Reduce class simply writes the output of each key-value pair to the context. The program assumes a specific format for the input data and does not handle any errors that may occur during the processing of the input data.
+
 ### Problem 2.4: Patent Program
+
+![](images/2.4.1_Explain.png)
+
+
+![](images/2.4.2_Explain.png)
+
 Explain:
+
+The PatentProgram counts the number of occurrences of a word in a corpus. 
+
+The PatentMapper class takes in key-value pairs where the key is an Object and the value is a Text. It converts each line of text to a string and splits it into tokens using whitespace as a delimiter. It then sets each token as a key and the next token as the value in the output key-value pair and writes them to the context. 
+
+The SumSubPatentReducer class takes in a key-value pair where the key is a Text and the value is a list of Texts. It sums up the values to count the total number of occurrences of the key and converts the counter to a string to write to the output file. The program can be used to count the number of occurrences of words in patent documents.
+
 ### Problem 2.5: MaxTemp Program
+
 ![](images/2.5.1_Explain.png)
 
 ![](images/2.5.2_Explain.png)
 
 Explain:
 
-The Map function is defined as a static inner class called Map, which extends the Mapper class. The Map class overrides the map method, which is called once for each line of the input file. In the map method, the input line is converted to a string, split into parts using a space as the delimiter, and the first part is saved as the key (the date) and the second part is saved as the value (the temperature). The key-value pair is emitted using the context object.
+This is a Java program that calculates the maximum temperature for each date from the input data using the MapReduce paradigm that extends Mapper and Reducer classes respectively. 
 
-The Reduce function is defined as a static inner class called Reduce, which extends the Reducer class. The Reduce class overrides the reduce method, which is called once for each unique key (date) emitted by the Map function. In the reduce method, the values for a given key are received as an iterable object, which is traversed to find the maximum temperature. The maximum temperature is then emitted as a key-value pair using the context object.
+The Map class reads each line of input, splits it into two parts based on a delimiter (space), and saves the date and temperature values as separate strings. It then writes the date and temperature values as key-value pairs to the context. 
 
+The Reduce class receives the key-value pairs generated by the Map class and iterates over the values for each key. For each key, it keeps track of the maximum temperature by comparing the temperature values to a running maximum. 
+
+Finally, it writes the maximum temperature for each date to the context. The program assumes that the input data is in a specific format with the date and temperature values separated by a space. The program does not handle any errors that may occur during the processing of the input data.
 
 ### Problem 2.6: AverageSalary Program
+
+![](images/2.6.1_Explain.png)
+
+
+![](images/2.6.2_Explain.png)
+
 Explain:
+
+The AverageSalary program calculates the average salary of each person in a dataset.
+
+The AvgMapper class takes in key-value pairs where the key is an Object and the value is a Text. It splits each line of text into an array of strings using the tab character as a delimiter. It then sets the first element of the array as the key and the third element as the value in the output key-value pair and writes them to the context. 
+ 
+The AvgReducer class takes in a key-value pair where the key is a Text and the value is a list of FloatWritables. It sums up the values to count the total salary of the persons and the number of persons. It then calculates the average salary and sets it as a FloatWritable to write to the output file. The program can be used to calculate the average salary of employees in a company or the average income of individuals in a given area.
+
 ### Problem 2.7: De Identify HealthCare Program
+
 ![](images/2.7.1_Explain.png)
 
 ![](images/2.7.2_Explain.png)
 
 Explain:
-The DeIdentify class includes a Map class that implements the Mapper interface to read input data in a text format, encrypts the specific columns in the data table, and writes the modified data to a Hadoop cluster. The program also includes a helper function, encrypt(), which is used by the Map class to encrypt specific columns in the data table.
 
-The program initializes a logger object to start logging data, specifies the parameters required to encrypt the data table's columns, and initializes the encryption key for the data table. The program uses the Cipher class to perform AES encryption and the Base64 class to encode the encrypted data into a string format.
+This is a Java program that uses Hadoop's MapReduce framework to perform de-identification of sensitive data in a CSV file. The program defines a Mapper class that reads in each line of the input file and applies encryption to selected columns. The encryption function used is AES encryption with ECB mode and PKCS5 padding. The key for encryption is hardcoded as a byte array. The program also defines a Reducer class that is not used in this case. The output of the Mapper is a key-value pair with NullWritable as the key and the encrypted line as the value.
+
 ### Problem 2.8: Music Track Program
 
+![](images/2.8.1_Explain.png)
+
+![](images/2.8.2_Explain.png)
+
 Explain:
+
+The code is a MapReduce implementation to analyze music track data. 
+
+The Mapper extracts fields from the input data and emits key-value pairs for unique listeners, shared, radio, and total listens. If the radio is skipped, it emits a key-value pair for skips on radio. 
+
+The Reducer class counts the number of occurrences for each key and outputs the result. The code can be used to analyze the listening patterns of music tracks and identify trends such as how often users skip tracks on the radio.
+
 ### Problem 2.9: Telecom Call Data Record Program
+
 ![](images/2.9.1_Explain.png)
 
 
 ![](images/2.9.2_Explain.png)
 
 Explain:
+
+This is a Java class called CallDataRecord that includes two inner classes that extend Hadoop's Mapper and Reducer classes respectively.
 
 In the "Map" class, the map method receives the CDR as an input, splits it into parts using the "|" delimiter, and checks if the call is a CDR by checking the value in the fifth position. If it is a CDR, the duration of the call is calculated by converting the start and end times to minutes using the "toMinutes" function and subtracting them. The phone number and call duration are then emitted as key-value pairs.
 
@@ -81,8 +154,17 @@ In the "Reduce" class, the reduce method receives the key-value pairs emitted by
 
 ### Problem 2.10: Count Connected Component Program
 
+![](images/2.10.1_Explain.png)
+
+![](images/2.10.2_Explain.png)
 
 Explain:
+
+This is a MapReduce program to count the number of connected components in a graph. The input data consists of lines where the first token is a node ID, and the following tokens are the IDs of the node's neighbors. The program outputs a key-value pair for each node ID, where the key is the node ID and the value is the size of the connected component containing that node.
+
+The Map function takes each line of input and extracts the node ID and the IDs of its neighbors. It sorts the neighbor IDs in ascending order and then emits key-value pairs for each pair of neighboring nodes, as well as for the node and each of its neighbors. This is done to ensure that all nodes in a connected component end up with the same set of neighbor IDs in the Reduce function.
+
+The Reduce function takes each node ID and the list of its neighbors emitted by the Map function. It builds a set of neighbor IDs and then iteratively adds new nodes to the set until no new nodes can be added. Each set of connected nodes constitutes a connected component, and the size of the set is emitted as the value for the node ID.
 
 ## Take screenshots of the running process and results.
 

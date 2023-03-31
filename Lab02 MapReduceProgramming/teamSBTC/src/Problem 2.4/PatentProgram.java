@@ -25,7 +25,11 @@ public class PatentProgram {
             StringTokenizer tokenizer = new StringTokenizer(line, " ");
             while (tokenizer.hasMoreTokens()) {
                 String token = tokenizer.nextToken();
+
+                // Set the key for current token
                 k.set(token);
+
+                // Set the value for next token in string
                 String token1 = tokenizer.nextToken();
                 v.set(token1);
                 context.write(k, v);
@@ -39,9 +43,11 @@ public class PatentProgram {
         public void reduce(Text key, Iterable<Text> values,
                            Context context) throws IOException, InterruptedException {
             int sum = 0;
+            // Counter fdr number of occurences
             for (Text x : values) {
                 sum++;
             }
+            // Convert the counter to string to write file
             String result = Integer.toString(sum);
             context.write(key, new Text(result));
         }

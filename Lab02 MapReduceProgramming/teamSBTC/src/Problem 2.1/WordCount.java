@@ -30,6 +30,7 @@ public class WordCount {
   public static class Reduce extends Reducer<Text, IntWritable, Text, IntWritable> {
     public void reduce(Text key, Iterable<IntWritable> values, Context context) throws IOException, InterruptedException {
       int sum = 0;
+      // Counter for each key
       for (IntWritable value : values) {
         sum += value.get();
       }
