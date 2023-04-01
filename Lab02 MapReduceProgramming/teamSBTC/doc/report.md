@@ -17,7 +17,7 @@ code-block-font-size: \scriptsize
 
 
 ## Did you code by yourself or reference the solution?
-
+All problems, We refer to the code in the file "LabRequirements.pdf" and just get the data of the maxtemp sentence online (https://github.com/Rkrahul04/Maximum_Temp_Calculation_mapreduce/blob/master/Dataset%20-%20Calculate%20Maximum%20Temperature/Temperature) . 
 
 
 
@@ -289,6 +289,8 @@ The Reduce function takes each node ID and the list of its neighbors emitted by 
   In general, some strengths could include things like being curious, motivated, persistent, organized, and having good teammate skills.
 
   Weaknesses could include things like having some problems which has much time to solve. First, we feel shy in asking for help from my team when needed afer that got to know each other better and help each other complete the Lab.
+
+  After completing the lab, our team has more knowledge about MapReduce and consolidates knowledge for the midterm exam.
 
   
 
